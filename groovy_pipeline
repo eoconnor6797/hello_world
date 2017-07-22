@@ -34,19 +34,19 @@ node {
 
 	stage('SonarQube analysis') {
 		// requires SonarQube Scanner 2.8+
-		def scannerHome = tool 'sonar-scan;
-		withSonarQubeEnv('My SonarQube Server') {
-			sh "${scannerHome}/bin/sonar-scanner"
-		}
+		def scannerHome = tool 'sonar-scan'
+			withSonarQubeEnv('My SonarQube Server') {
+				sh "${scannerHome}/bin/sonar-scanner"
+			}
 		timeout(time: 1, unit: 'HOURS') {
 			def qg = waitForQualityGate()
-				if (qg.status != 'OK' {
-						error "did not work"
+				if (qg.status != 'OK') {
+					error "did not work"
 
-						}
-						}
-						}
+				}
+		}
+	}
 
 
 
-						}
+}
