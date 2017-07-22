@@ -25,13 +25,28 @@ node {
 			"files": [
 			{
 				"pattern": "target/*.jar",
-					"target": "pipe_test/"
+					"target": "pipe_test/${BUILD_TAG}/"
 			}
 			]
 	}"""
 	server.upload(uploadSpec)
 	}
 
+	stage('SonarQube analysis') {
+		// requires SonarQube Scanner 2.8+
+		def scannerHome = tool 'sonar-scan;
+		withSonarQubeEnv('My SonarQube Server') {
+			sh "${scannerHome}/bin/sonar-scanner"
+		}
+		timeout(time: 1, unit: 'HOURS') {
+			def qg = waitForQualityGate()
+				if (qg.status != 'OK' {
+						error "did not work"
+
+						}
+						}
+						}
 
 
-}
+
+						}
