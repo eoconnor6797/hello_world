@@ -36,7 +36,7 @@ node {
 		// requires SonarQube Scanner 2.8+
 		def scannerHome = tool 'sonar-scan'
 			withSonarQubeEnv('sonar-server') {
-				sh "${scannerHome}/bin/sonar-scanner"
+				sh "${scannerHome}/bin/sonar-runner"
 			}
 		timeout(time: 1, unit: 'HOURS') {
 			def qg = waitForQualityGate()
