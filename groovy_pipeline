@@ -32,21 +32,21 @@ node {
 	server.upload(uploadSpec)
 	}
 
-	stage('SonarQube analysis') {
-		// requires SonarQube Scanner 2.8+
-		def scannerHome = tool 'sonar-scan'
-			withSonarQubeEnv('sonar-server') {
-				sh "${scannerHome}/bin/sonar-runner"
-			}
-		timeout(time: 1, unit: 'HOURS') {
-			def qg = waitForQualityGate()
-				if (qg.status != 'OK') {
-					error "did not work"
 
-				}
+}
+
+
+stage('SonarQube analysis') {
+	// requires SonarQube Scanner 2.8+
+	def scannerHome = tool 'sonar-scan'
+		withSonarQubeEnv('sonar-server') {
+			sh "${scannerHome}/bin/sonar-runner"
 		}
+	timeout(time: 1, unit: 'HOURS') {
+		def qg = waitForQualityGate()
+			if (qg.status != 'OK') {
+				error "did not work"
+
+			}
 	}
-
-
-
 }
