@@ -17,7 +17,7 @@ node {
 		} else {
 			bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
 		}
-		hygieiaBuildPublishStep buildStatus: 'Success'
+		
 	}
 	stage('Store') {
 		def server = Artifactory.server 'localHost'
@@ -30,7 +30,6 @@ node {
 			]
 	}"""
 	server.upload(uploadSpec)
-	hygieiaArtifactPublishStep artifactDirectory: 'target/', artifactGroup: 'org.Dev_ops', artifactName: '*.jar', artifactVersion: ''
 	}
 
 	stage('SonarQube analysis') {
@@ -42,13 +41,11 @@ node {
 			}
 		timeout(time: 1, unit: 'HOURS') {
 			def qg = waitForQualityGate()
-				if (qg.status != 'OK') {
+				if (qg.status != 'OK') { 
 					error "did not work"
 
 				}
 		}
 	}
-
-
 
 }
