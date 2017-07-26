@@ -17,6 +17,7 @@ node {
 		} else {
 			bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
 		}
+		hygieiaBuildPublishStep buildStatus: 'Success'
 	}
 	stage('Store') {
 		def server = Artifactory.server 'localHost'
@@ -37,8 +38,8 @@ node {
 		def scannerHome = tool 'sonar-scan'
 			withSonarQubeEnv('sonar-server') {
 				sh "${scannerHome}/bin/sonar-runner"
+				hygieiaSonarPublishStep ceQueryIntervalInSeconds: '10', ceQueryMaxAttempts: '30'
 			}
-		hygieiaSonarPublishStep ceQueryIntervalInSeconds: '10', ceQueryMaxAttempts: '30'
 		timeout(time: 1, unit: 'HOURS') {
 			def qg = waitForQualityGate()
 				if (qg.status != 'OK') {
