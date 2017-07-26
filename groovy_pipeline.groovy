@@ -29,6 +29,7 @@ node {
 			]
 	}"""
 	server.upload(uploadSpec)
+	hygieiaArtifactPublishStep artifactDirectory: 'target/', artifactGroup: 'org.Dev_ops', artifactName: '*.jar', artifactVersion: ''
 	}
 
 	stage('SonarQube analysis') {
