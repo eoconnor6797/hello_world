@@ -38,6 +38,7 @@ node {
 			withSonarQubeEnv('sonar-server') {
 				sh "${scannerHome}/bin/sonar-runner"
 			}
+		hygieiaSonarPublishStep ceQueryIntervalInSeconds: '10', ceQueryMaxAttempts: '30'
 		timeout(time: 1, unit: 'HOURS') {
 			def qg = waitForQualityGate()
 				if (qg.status != 'OK') {
