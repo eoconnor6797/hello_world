@@ -13,9 +13,9 @@ node {
 		// Run the maven build
 		if (isUnix()) {
 			//  sh "'${javaHome}/bin/javac' hello.java"
-			sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+			sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean compile package"
 		} else {
-			bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+			bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean compile package/)
 		}
 		
 	}
