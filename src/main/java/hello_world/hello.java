@@ -8,9 +8,13 @@ public class hello {
         System.out.print("hello world/n");
         hello thingy = new hello();
         System.out.println(thingy.method(5));
+	System.out.println(thingy.notAnExcuseForUnitTests("not"));
     }
 
     public int method(int thing) {
         return thing*2;
+    }
+    public String notAnExcuseForUnitTests(String returnThis) {
+	return returnThis + " stuff";
     }
 }
