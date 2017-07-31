@@ -1,4 +1,4 @@
-node {
+node("Linux") {
 	def mvnHome
 		stage('Preparation') { // for display purposes
 			// Get some code from a GitHub repository
@@ -15,7 +15,7 @@ node {
 			//  sh "'${javaHome}/bin/javac' hello.java"
 			sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean compile package"
 		} else {
-			bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean compile package/)
+			//bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean compile package/)
 		}
 		
 	}
