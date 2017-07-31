@@ -19,7 +19,7 @@ node("Linux") {
 		
 	}
 	stage('Store') {
-		def server = Artifactory.server 'localHost'
+		def server = Artifactory.server 'Artifactory'
 			def uploadSpec = """{
 			"files": [
 			{
