@@ -6,8 +6,7 @@ node("Linux") {
 				// Get the Maven tool.
 				// ** NOTE: This 'M3' Maven tool must be configured
 				// **       in the global configuration.           
-				mvnHome = tool 'mvn'
-				javaHome = tool 'java_1.8'
+				mvnHome = tool 'Maven_3.5.0'			
 		}
 	stage('Build') {
 		// Run the maven build
