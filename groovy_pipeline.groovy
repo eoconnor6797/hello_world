@@ -24,7 +24,7 @@ node("Linux") {
 			"files": [
 			{
 				"pattern": "target/*.jar",
-					"target": "libs-snapshot-local/${BUILD_TAG}/"
+					"target": "hello-world-repo/${BUILD_TAG}/"
 			}
 			]
 	}"""
