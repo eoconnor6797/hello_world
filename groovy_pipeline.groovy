@@ -33,8 +33,8 @@ node("Linux") {
 
 	stage('SonarQube analysis') {
 		// requires SonarQube Scanner 2.8+
-		def scannerHome = tool 'sonar-scan'
-			withSonarQubeEnv('sonar-server') {
+		def scannerHome = tool 'SonarScanner'
+			withSonarQubeEnv('Sandbox Sonarqube') {
 				sh "${scannerHome}/bin/sonar-runner"
 			}
 		timeout(time: 1, unit: 'HOURS') {
