@@ -24,7 +24,7 @@ node("Linux") {
 			"files": [
 			{
 				"pattern": "target/*.jar",
-					"target": "pipe_test/${BUILD_TAG}/"
+					"target": "libs-snapshot-local/${BUILD_TAG}/"
 			}
 			]
 	}"""
